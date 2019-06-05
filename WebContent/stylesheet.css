@@ -1,0 +1,55 @@
+/** Imports ** /
+
+
+
+
+/** Default Styles **/
+a {
+	text-decoration: none;
+	color: inherit;
+}
+ul, ol, li {
+	list-style: none;
+}
+
+
+/** Navbar Styles **/
+nav#topnav {
+	width:100%;
+	text-align: right;
+}
+
+
+
+
+/** Body Styles **/
+h1#name {
+	position: fixed;
+	top:23%;
+	left:37%;
+	font-size: 4em;
+}
+input.search {
+	position: fixed;
+	top: 40%;
+	left:33%;
+	text-align: center;
+	font-size: 2.5em;
+	width: 13em;
+}
+button#search {
+	position: fixed;
+	width: 4em;
+	height: 3.5em;
+	top:40%;
+	left: 70%;
+	font-size: 1em;
+}
+
+
+/** Footer Styles **/
+
+
+
+
+/** Animations and Keyframes **/ 
