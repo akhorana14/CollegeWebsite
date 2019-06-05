@@ -18,7 +18,9 @@ nav#topnav {
 	width:100%;
 	text-align: right;
 }
-
+body {
+	background-image: url(cb_stock.jpeg);
+}
 
 
 
