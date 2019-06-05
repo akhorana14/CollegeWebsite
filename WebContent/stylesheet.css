@@ -25,13 +25,13 @@ nav#topnav {
 /** Body Styles **/
 h1#name {
 	position: fixed;
-	top:23%;
+	top:10%;
 	left:37%;
 	font-size: 4em;
 }
 input.search {
 	position: fixed;
-	top: 40%;
+	top: 45%;
 	left:33%;
 	text-align: center;
 	font-size: 2.5em;
@@ -40,8 +40,8 @@ input.search {
 button#search {
 	position: fixed;
 	width: 4em;
-	height: 3.5em;
-	top:40%;
+	height: 3.27em;
+	top:45%;
 	left: 70%;
 	font-size: 1em;
 }
