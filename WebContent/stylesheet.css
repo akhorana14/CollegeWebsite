@@ -14,15 +14,20 @@ ul, ol, li {
 
 
 .topnav {
+position:fixed;
+	top:0;
+	left:0;
+	width:100%;
   text-align:right;
   font-family: 'Lato', sans-serif;
-  background-color: #1e18db;
+  background-color: #292684;
+  color: #e0e0e0;
   overflow: hidden;
 }
 
 .topnav a {
   float: right;
-  color: #f2f2f2;
+  color: #e0e0e0;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -30,16 +35,11 @@ ul, ol, li {
 }
 
 .topnav a:hover {
-  text-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #151c66;
   color: white;
 }
+
 body {
-	background-color: #2771e8;
+	background-color: #397fef;
 	/*background-image: url(""); */
 	background-repeat: no-repeat;
 }
