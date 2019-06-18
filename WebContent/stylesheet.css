@@ -59,10 +59,10 @@ h1#name {
 input.search {
 	position: fixed;
 	top: 45%;
-	left:33%;
+	left:30%;
 	text-align: left;
-	font-size: 1.5em;
-	width: 23em;
+	font-size: 1.75em;
+	width: 20em;
 }
 input.search a {
   float: left;
@@ -81,9 +81,10 @@ button#search {
 	position: fixed;
 	width: 4em;
 	height: 3.27em;
-	top:45%;
-	left: 70%;
+	top: 44.75%;
+	left: 65%;
 	background-image: url("https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png");
+	background-size: 47px 40px;
 }
 
 
