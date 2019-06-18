@@ -1,22 +1,119 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+	<TITLE>College Corner</TITLE>
 	<meta charset="utf-8">
-	<title>CollegeBuddy</title>
-	<link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<script src="index.js"></script>
-</head>
-<body>
-<div class="topnav">
-  <a class="active" href="#login">Login</a>
-  <a href="#signup">Sign Up</a>
-</div>
-<h1 id="name">College Buddy</h1>
-<input type="text" 
-color="6b6b6b" 
-placeholder="Enter a college or university...   " class="search">
-<button id="search"></button>
+	<link rel="stylesheet" type="text/css" href="cc_theme.css">
+</HEAD>
+<BODY>
+<nav id="topnav">
+	<form method="post" action="dad.php">
+	<button id="login" name="log">Login</button>
+	<button id="register" name="reg">Register</button>
+</form>
+</nav>
+<h1 id="name">College Corner</h1>
+<form action="" method="POST">
+<input type="text" placeholder="   Start Searching Colleges  " class="search" name="college">
+<input type="submit" name="submit" id="submit">
+</form>
+<?php
+/**
+$servername = "db4free.net";
+$username = "dahdave";
+$password = "123456789";
+$db = "college_corner";
+ **/
+$servername = "remotemysql.com";
+$username = "tLRfZznYPZ";
+$password = "Psw6T2l7OL";
+$db = "tLRfZznYPZ";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $db);
 
-<footer> </footer>
-</body>
-</html>
+// for data revolving around the search
+if (isset($_POST['submit'])) {
+	$name = $_POST['college'];
+	$sql = "SELECT Location, Tuition, GPA, SAT, ACT, Writing, Acceptance FROM info WHERE name LIKE '$name'";
+	$result = mysqli_query($conn, $sql);
+	/* MYSQLI_query is a boolean */
+	$row = mysqli_fetch_assoc($result); /* creates an assos array based on the query */
+	if ($row == 0) {
+		echo "Error. School not found.";
+	} else {
+		echo "<br><br><br><br>";
+		// loops the heading of the table and display the results.
+		foreach ($row as $key => $row) {
+			echo $key . "  ";
+			echo $row;
+			echo "<br>";
+
+		}
+	}
+
+}
+// login details
+if (isset($_POST['log'])) {
+	echo "<br><br><br><br>";
+	echo "<form action='dad.php' method='POST' id='popup'>";
+	echo "<input type='text' name='username' placeholder='Username'> <br>";
+	echo "<input type='text' name='password' placeholder='Password'><br>";
+	echo "<input type='submit'>";
+	echo "</form>";
+
+}
+if (isset($_POST['reg'])) {
+	echo "<br><br><br><br>";
+	echo "<form action='dad.php' method='POST' id='popup'>";
+	echo "<input type='email' name='email' placeholder='Email' required> <br>";
+	echo "<input type='text' name='username1' placeholder='Username' required> <br>";
+	echo "<input type='text' name='password1' placeholder='Password' required><br>";
+	echo "<input type='text' name='GPA' placeholder='GPA'><br>";
+	echo "<input type='text' name='ACT' placeholder='ACT'><br>";
+	echo "<input type='text' name='SAT' placeholder='SAT'><br>";
+	echo "<input type='submit'>";
+	echo "</form>";
+
+}
+if (isset($_POST['email'])) // QUERY INTO THE DATABASE AND REGISTER.
+{
+	// $username2 = "jgeiI6GRFh";
+	// $password2 = "htUnrVnZdz";
+	$GPA = $_POST['GPA'];
+	$EMAIL = $_POST['email'];
+	$ACT = $_POST['ACT'];
+	$SAT = $_POST['SAT'];
+	$username = $_POST['username1'];
+	$password = $_POST['password1'];
+	$sql = "INSERT INTO `account` (`Username`, `Password`, `Email`, `GPA`, `SAT`, `ACT`) VALUES ('$username', '$password', '$EMAIL', '$GPA', '$SAT', '$ACT');";
+	$result = mysqli_query($conn, $sql);
+	/* MYSQLI_query is a boolean */
+	/* creates an assos array based on the query */
+	echo "<h1> Success, you can login now. </h1>";
+}
+if (isset($_POST['username'])) {
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	if (empty($username) || empty($password)) {
+		echo "<script> window.alert('Error')</script>";
+	} else {
+		$sql = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		if ($row == 0) {
+			echo "<script>window.alert('Invalid Username/Password')</script>";
+		} else {
+			// loops the heading of the table and display the results.
+			foreach ($row as $key => $row) {
+				echo $key . "  ";
+				echo $row;
+				echo "<br>";
+
+			}
+		}
+	}
+}
+?>
+
+</BODY>
+</HTML>
