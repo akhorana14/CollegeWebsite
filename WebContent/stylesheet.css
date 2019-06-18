@@ -19,7 +19,8 @@ nav#topnav {
 	text-align: right;
 }
 body {
-	background-image: url("https://cdn5.f-cdn.com/contestentries/1370548/29833877/5b4f15b1ea4aa_thumb900.jpg");
+	background-color: #2771e8;
+	/*background-image: url(""); */
 	background-repeat: no-repeat;
 }
 
@@ -31,6 +32,9 @@ h1#name {
 	top:10%;
 	left:37%;
 	font-size: 4em;
+	color: #ffffff;
+	font-weight: normal;
+	font-family: 'Lato', sans-serif;
 }
 input.search {
 	position: fixed;
