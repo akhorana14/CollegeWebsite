@@ -37,11 +37,7 @@ position:fixed;
   color: white;
 }
 
-body {
-	background-color: #397fef;
-	/*background-image: url(""); */
-	background-repeat: no-repeat;
-}
+
 
 
 
@@ -55,6 +51,13 @@ h1#name {
 	font-weight: bold;
 	font-family: 'Lato', sans-serif;
 }
+
+body {
+	background-color: #397fef;
+	/*background-image: url(""); */
+	background-repeat: no-repeat;
+}
+
 input.search {
 	position: fixed;
 	top: 45%;

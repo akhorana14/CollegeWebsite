@@ -7,9 +7,9 @@
 </HEAD>
 <BODY>
 <div class = "topnav" id="topnav">
-	<form method="post" action="dad.php">
-	<a name="log" id="login" href = "#login">Login</a>
-	<a name="reg" id = "register" href = "#register">Register</a>
+	<form method="post" action="index.php">
+	<a name="log" id="login" href = "?login">Login</a>
+	<a name="reg" id = "register" href = "?register">Register</a>
 </form>
 </div>
 <h1 id="name">College Corner</h1>
@@ -53,18 +53,18 @@ if (isset($_POST['submit'])) {
 
 }
 // login details
-if (isset($_POST['log'])) {
+if (isset($_GET['login'])) {
 	echo "<br><br><br><br>";
-	echo "<form action='dad.php' method='POST' id='popup'>";
+	echo "<form action='index.php' method='POST' id='popup'>";
 	echo "<input type='text' name='username' placeholder='Username'> <br>";
 	echo "<input type='text' name='password' placeholder='Password'><br>";
 	echo "<input type='submit'>";
 	echo "</form>";
 
 }
-if (isset($_POST['reg'])) {
+if (isset($_GET['register'])) {
 	echo "<br><br><br><br>";
-	echo "<form action='dad.php' method='POST' id='popup'>";
+	echo "<form action='index.php' method='POST' id='popup'>";
 	echo "<input type='email' name='email' placeholder='Email' required> <br>";
 	echo "<input type='text' name='username1' placeholder='Username' required> <br>";
 	echo "<input type='text' name='password1' placeholder='Password' required><br>";
