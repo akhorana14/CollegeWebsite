@@ -8,8 +8,8 @@
 <BODY>
 <nav id="topnav">
 	<form method="post" action="dad.php">
-	<a class="login" name="log">Login</a>
-	<a class="register" name="reg">Register</a>
+	<a class="login" name="log" href = "#login">Login</a>
+	<a class="register" name="reg" href = "#register">Register</a>
 </form>
 </nav>
 <h1 id="name">College Corner</h1>
