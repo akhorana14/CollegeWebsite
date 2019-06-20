@@ -6,16 +6,16 @@
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 </HEAD>
 <BODY>
-<nav id="topnav">
+<div class = "topnav" id="topnav">
 	<form method="post" action="dad.php">
-	<a class="login" name="log" href = "#login">Login</a>
-	<a class="register" name="reg" href = "#register">Register</a>
+	<a name="log" id="login" href = "#login">Login</a>
+	<a name="reg" id = "register" href = "#register">Register</a>
 </form>
-</nav>
+</div>
 <h1 id="name">College Corner</h1>
 <form action="" method="POST">
 <input type="text" placeholder="   Start Searching Colleges  " class="search" name="college">
-<input type="submit" name="submit" id="submit">
+<button name="search" id="search"></button>
 </form>
 <?php
 /**
