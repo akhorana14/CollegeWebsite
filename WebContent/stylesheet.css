@@ -13,7 +13,7 @@ ul, ol, li {
 }
 
 
-nav {
+.topnav {
 position:fixed;
 	top:0;
 	left:0;
@@ -25,7 +25,7 @@ position:fixed;
   overflow: hidden;
 }
 
-button {
+.topnav a {
   float: right;
   color: #e0e0e0;
   text-align: center;
@@ -33,7 +33,6 @@ button {
   text-decoration: none;
   font-size: 17px;
 }
-
 .topnav a:hover {
   color: white;
 }
@@ -64,7 +63,7 @@ input.search {
 	font-size: 1.5em;
 	width: 23em;
 }
-button.search {
+input.search a {
   float: left;
   display: block;
   color: black;
@@ -73,17 +72,24 @@ button.search {
   text-decoration: none;
   font-size: 17px;
 }
-button.search:hover{
+
+input.search a:hover {
   background-color: #ddd;
   color: black;
 }
-input#submit {
+button#search {
 	position: fixed;
 	width: 4em;
 	height: 3.27em;
 	top:45%;
 	left: 70%;
+	background-image: url("https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png");
 }
+
+
+/* OVERLAY! */
+
+
 
 
 /** Footer Styles **/

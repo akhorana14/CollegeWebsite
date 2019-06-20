@@ -3,13 +3,13 @@
 <HEAD>
 	<TITLE>College Corner</TITLE>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="cc_theme.css">
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 </HEAD>
 <BODY>
 <nav id="topnav">
 	<form method="post" action="dad.php">
-	<button id="login" name="log">Login</button>
-	<button id="register" name="reg">Register</button>
+	<a class="login" name="log">Login</a>
+	<a class="register" name="reg">Register</a>
 </form>
 </nav>
 <h1 id="name">College Corner</h1>
@@ -85,7 +85,7 @@ if (isset($_POST['email'])) // QUERY INTO THE DATABASE AND REGISTER.
 	$SAT = $_POST['SAT'];
 	$username = $_POST['username1'];
 	$password = $_POST['password1'];
-	$sql = "INSERT INTO `account` (`Username`, `Password`, `Email`, `GPA`, `SAT`, `ACT`) VALUES ('$username', '$password', '$EMAIL', '$GPA', '$SAT', '$ACT');";
+	$sql = "INSERT INTO `account` (`Username`, `Password`, `Email`, `GPA`, `SAT`, `ACT`) VALUES ('$username', '$password', '$EMAIL', '$GPA', '$SAT', '$ACT')";
 	$result = mysqli_query($conn, $sql);
 	/* MYSQLI_query is a boolean */
 	/* creates an assos array based on the query */
