@@ -1,15 +1,17 @@
 <!DOCTYPE HTML>
 <HTML>
+
 <HEAD>
 	<TITLE>College Corner</TITLE>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<script src="index.js"></script>
 </HEAD>
 <BODY>
 <div class = "topnav" id="topnav">
 	<form method="post" action="index.php">
-	<a name="log" id="login" href = "?login">Login</a>
-	<a name="reg" id = "register" href = "?register">Register</a>
+	<a name="log" id="login" onclick = "on(); return false;" href = "?login">Login</a>
+	<a name="reg" id = "register" onclick = "on(); return false;" href = "?register">Register</a>
 </form>
 </div>
 <h1 id="name">College Corner</h1>
@@ -17,6 +19,7 @@
 <input type="text" placeholder="   Start Searching Colleges  " class="search" name="college">
 <button name="search" id="search"></button>
 </form>
+
 <?php
 /**
 $servername = "db4free.net";
@@ -52,6 +55,11 @@ if (isset($_POST['submit'])) {
 	}
 
 }
+?>
+<div class = "overlay" id="overlay" onclick = "off(); return false;">
+<div class = "gui" id = "gui">
+
+<?php
 // login details
 if (isset($_GET['login'])) {
 	echo "<br><br><br><br>";
@@ -75,6 +83,10 @@ if (isset($_GET['register'])) {
 	echo "</form>";
 
 }
+?>
+</div>
+</div>
+<?php
 if (isset($_POST['email'])) // QUERY INTO THE DATABASE AND REGISTER.
 {
 	// $username2 = "jgeiI6GRFh";
