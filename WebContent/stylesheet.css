@@ -36,8 +36,39 @@ position:fixed;
 .topnav a:hover {
   color: white;
 }
+.dropdown {
+	display: table;
+	width: 90px;
+	background-color: gray;
+	color: white;
+	float: right;
+	box-shadow: 3px 3px 10px black;
 
+}
+#dropdown-content {
+	display: none;
+	padding: 5px;
+	font-size: 1.1em;
+	padding-left: 0px;
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+}
+a#user:hover .dropdown-content {
+	display: block;
+}
+a {
+	    color: #e0e0e0;
 
+}
+a:hover {
+	color: white;
+}
+
+body {
+	background-color: #397fef;
+	/*background-image: url(""); */
+	background-repeat: no-repeat;
+}
 
 
 
@@ -51,13 +82,6 @@ h1#name {
 	font-weight: bold;
 	font-family: 'Lato', sans-serif;
 }
-
-body {
-	background-color: #397fef;
-	/*background-image: url(""); */
-	background-repeat: no-repeat;
-}
-
 input.search {
 	position: fixed;
 	top: 45%;
@@ -65,6 +89,7 @@ input.search {
 	text-align: left;
 	font-size: 1.5em;
 	width: 23em;
+
 }
 input.search a {
   float: left;
@@ -76,45 +101,39 @@ input.search a {
   font-size: 17px;
 }
 
-input.search a:hover {
+input.search {
   background-color: #ddd;
   color: black;
+  z-index: -99;
 }
-button#search {
+input#search {
 	position: fixed;
 	width: 4em;
 	height: 3.27em;
 	top:45%;
 	left: 70%;
 	background-image: url("https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png");
+	z-index: -98;
 }
-
+img#search {
+	position: fixed;
+	width: 38px;
+	height: 38px;
+	top:45%;
+	left: 70%;
+	background-image: url("https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png");
+}
+video {
+	position: fixed;
+	min-height:100%;
+	min-width:100%;
+	 right: 0;
+  	bottom: 0;
+  	z-index: -100;
+}
 
 /* OVERLAY! */
-#overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0; 
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
 
-#gui{
-position: fixed; /* Sit on top of the page content */
-display: inherit;
-margin-left: 100px;
-  width: 350px; /* Full width (cover the whole page) */
-  height: 600px; /* Full height (cover the whole page) */
-  background-color: white; /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
 
 
 

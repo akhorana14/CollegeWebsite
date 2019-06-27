@@ -1,32 +1,64 @@
 <!DOCTYPE HTML>
 <HTML>
-
 <HEAD>
 	<TITLE>College Corner</TITLE>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<script src="index.js"></script>
 </HEAD>
 <BODY>
-<div class = "topnav" id="topnav">
-	<form method="post" action="index.php">
-	<a name="log" id="login" onclick = "on(); return false;" href = "?login">Login</a>
-	<a name="reg" id = "register" onclick = "on(); return false;" href = "?register">Register</a>
-</form>
-</div>
+		<video autoplay muted loop id="backgroundVideo">
+  <source src="school (1).mp4" type="video/mp4">
+</video>
+	<?php
+session_start(); // gets global variables
+
+//  chooses which nvarbar to display if the user is logged in or not.
+if ($_SESSION['loggedin'] == 1) {
+	echo "<div class = 'topnav' id='topnav'>";
+	echo "<form method='post' action='cc_college.php'>";
+	echo "<a name='log' id='user' href='#' onClick='dropShow()'> Hello,        " . $_SESSION['username'] . "</a>";
+	echo "</form>";
+	echo "</div>";
+} else {
+	echo "<div class = 'topnav' id='topnav'>";
+	echo "<form method='post' action='index.php'>";
+	echo "<a name='log' id='login' href = '?login'>Login</a>";
+	echo "<a name='reg' id = 'register' href = '?register'>Register</a>";
+	echo "</form>";
+	echo "</div>";
+}
+
+if (isset($_GET['logout'])) {
+	unset($_SESSION['username']);
+	unset($_SESSION['loggedin']);
+	header('Location: index.php');
+}
+
+?>
 <h1 id="name">College Corner</h1>
 <form action="" method="POST">
 <input type="text" placeholder="   Start Searching Colleges  " class="search" name="college">
-<button name="search" id="search"></button>
+<img src="https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png" id="search">
+<input type="submit" value="" name="submit" id="search">
 </form>
-
+<br>
+<br>
+<div class="dropdown">
+	<div id="dropdown-content">
+		<a href="#"> Settings </a>
+		<a bref="#"> Colleges </a>
+		<a href="?logout"> Logout </a>
+	</div>
+</div>
 <?php
+
 /**
 $servername = "db4free.net";
 $username = "dahdave";
 $password = "123456789";
 $db = "college_corner";
  **/
+
 $servername = "remotemysql.com";
 $username = "tLRfZznYPZ";
 $password = "Psw6T2l7OL";
@@ -36,30 +68,22 @@ $conn = new mysqli($servername, $username, $password, $db);
 
 // for data revolving around the search
 if (isset($_POST['submit'])) {
-	$name = $_POST['college'];
-	$sql = "SELECT Location, Tuition, GPA, SAT, ACT, Writing, Acceptance FROM info WHERE name LIKE '$name'";
-	$result = mysqli_query($conn, $sql);
-	/* MYSQLI_query is a boolean */
-	$row = mysqli_fetch_assoc($result); /* creates an assos array based on the query */
-	if ($row == 0) {
-		echo "Error. School not found.";
-	} else {
-		echo "<br><br><br><br>";
-		// loops the heading of the table and display the results.
-		foreach ($row as $key => $row) {
-			echo $key . "  ";
-			echo $row;
-			echo "<br>";
+	if (isset($_POST['submit'])) {
+		$name = $_POST['college'];
+		$sql = "SELECT * FROM info WHERE name = '$name'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		if ($row == 0) {
+			echo "<script>window.alert('Try searching a different school.')</script>";
+		} else {
+			$_SESSION['college'] = $name;
+			echo "<script>window.alert('$name')</script>";
+			header("Location: cc_college.php");
 
 		}
 	}
 
 }
-?>
-<div class = "overlay" id="overlay" onclick = "off(); return false;">
-<div class = "gui" id = "gui">
-
-<?php
 // login details
 if (isset($_GET['login'])) {
 	echo "<br><br><br><br>";
@@ -83,10 +107,7 @@ if (isset($_GET['register'])) {
 	echo "</form>";
 
 }
-?>
-</div>
-</div>
-<?php
+
 if (isset($_POST['email'])) // QUERY INTO THE DATABASE AND REGISTER.
 {
 	// $username2 = "jgeiI6GRFh";
@@ -115,6 +136,8 @@ if (isset($_POST['username'])) {
 		if ($row == 0) {
 			echo "<script>window.alert('Invalid Username/Password')</script>";
 		} else {
+			$_SESSION['loggedin'] = true; // allows for a different navbar for logged in users.
+			$_SESSION['username'] = $username;
 			// loops the heading of the table and display the results.
 			foreach ($row as $key => $row) {
 				echo $key . "  ";
@@ -122,10 +145,26 @@ if (isset($_POST['username'])) {
 				echo "<br>";
 
 			}
+			header('Location: index.php');
 		}
 	}
 }
 ?>
+<script>
+	var shown = false;
+	function dropShow() {
+		if(shown == true)
+			{ dropHide(); }else{
+				shown = true;
+				document.getElementById('dropdown-content').style.display = 'block';
+			}
+
+	}
+	function dropHide() {
+		document.getElementById('dropdown-content').style.display = 'none';
+		shown = false;
+	}
+	</script>
 
 </BODY>
 </HTML>
