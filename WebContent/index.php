@@ -102,7 +102,7 @@ if (isset($_GET['register'])) {
 	echo "<input type='text' name='ACT' placeholder='ACT'><br>";
 	echo "<input type='text' name='SAT' placeholder='SAT'><br>";
 	echo "<input type='submit'>";
-	echo "</form>";
+	echo "</form>"; 
 
 }
 

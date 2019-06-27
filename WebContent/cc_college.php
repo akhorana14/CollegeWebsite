@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <HTML>
-<HEAD>
+<HEAD> 
 	<TITLE>College Corner</TITLE>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
