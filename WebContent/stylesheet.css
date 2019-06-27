@@ -235,6 +235,7 @@ input#sat
 a#email
 {
 	display: block;
+	color: #000000;
 	font-family: 'Lato', sans-serif;
 	margin-top: 90px;
 	margin-left: 20px;
@@ -242,6 +243,7 @@ a#email
 a#username
 {
 	display: block;
+	color: #000000;
 	font-family: 'Lato', sans-serif;
 	margin-top: 10px;
 	margin-left: 20px;
@@ -249,6 +251,7 @@ a#username
 a#username1
 {
 	display: block;
+	color: #000000;
 	font-family: 'Lato', sans-serif;
 	margin-top: 90px;
 	margin-left: 20px;
@@ -256,6 +259,7 @@ a#username1
 a#password
 {
 	display: block;
+	color: #000000;
 	font-family: 'Lato', sans-serif;
 	margin-top: 10px;
 	margin-left: 20px;
@@ -263,6 +267,7 @@ a#password
 a#gpa
 {
 	display: block;
+	color: #000000;
 	font-family: 'Lato', sans-serif;
 	margin-top: 10px;
 	margin-left: 20px;
@@ -270,6 +275,7 @@ a#gpa
 a#act
 {
 	display: block;
+	color: #000000;
 	font-family: 'Lato', sans-serif;
 	margin-top: 10px;
 	margin-left: 20px;
@@ -277,6 +283,7 @@ a#act
 a#sat
 {
 	display: block;
+	color: #000000;
 	font-family: 'Lato', sans-serif;
 	margin-top: 10px;
 	margin-left: 20px;
@@ -284,6 +291,7 @@ a#sat
 input#submit
 {
 	display: block;
+	color: #000000;
 	font-family: 'Lato', sans-serif;
 	margin-top: 10px;
 	margin-left: 250px;
@@ -291,6 +299,7 @@ input#submit
 input#submit1
 {
 	display: block;
+	color: #000000;
 	font-family: 'Lato', sans-serif;
 	margin-top: 10px;
 	margin-left: 250px;
