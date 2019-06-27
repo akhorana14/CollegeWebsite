@@ -104,7 +104,7 @@ top: 45%;
 left:33%;
 text-align: left;
 font-size: 1.5em;
-width: 23em;
+width: 38%;
 
 }
 input.search a {
@@ -129,7 +129,7 @@ position: fixed;
 width: 25px;
 height: 25px;
 top:45.75%;
-left: 71%;
+left: 69%;
 background-image: url("https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png");
 z-index: -98;
 }
@@ -138,7 +138,7 @@ position: fixed;
 width: 25px;
 height: 25px;
 top:45.75%;
-left: 71%;
+left: 69%;
 background-image: url("https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png");
 z-index: -98;
 }

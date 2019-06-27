@@ -73,25 +73,45 @@ echo "<br>";
 
 // login details
 if (isset($_GET['login'])) {
-echo "<br><br><br><br>";
-echo "<form action='index.php' method='POST' id='popup'>";
-echo "<input type='text' name='username' placeholder='Username'> <br>";
-echo "<input type='text' name='password' placeholder='Password'><br>";
-echo "<input type='submit'>";
-echo "</form>";
+	echo "<br><br><br><br>";
+	echo "<div class = 'overlay' id='overlay'>";
+	echo "<div class = 'gui' id = 'gui'>";
+	echo "<a name = 'cancel' id = 'cancel' onclick = 'off(); return false' href = ''>X</a>";
+	echo "<h2 id = 'login'>Log In to College Corner </h2>";
+	echo "<form action='index.php' method='POST' id='popup'>";
+	echo "<a id = 'username1'>Username: </a>";
+	echo "<input type='text' name='username' id = 'username1'> <br>";
+	echo "<a id = 'password'>Password: </a>";
+	echo "<input type='text' name='password' id = 'password'><br>";
+	echo "<input type='submit' id = 'submit'>";
+	echo "</form>";
+	echo "</div>";
+	echo "</div>";
 
 }
 if (isset($_GET['register'])) {
-echo "<br><br><br><br>";
-echo "<form action='index.php' method='POST' id='popup'>";
-echo "<input type='email' name='email' placeholder='Email' required> <br>";
-echo "<input type='text' name='username1' placeholder='Username' required> <br>";
-echo "<input type='text' name='password1' placeholder='Password' required><br>";
-echo "<input type='text' name='GPA' placeholder='GPA'><br>";
-echo "<input type='text' name='ACT' placeholder='ACT'><br>";
-echo "<input type='text' name='SAT' placeholder='SAT'><br>";
-echo "<input type='submit'>";
-echo "</form>";
+	echo "<br><br><br><br>";
+	echo "<div class = 'overlay' id='overlay'>";
+	echo "<div class = 'gui' id = 'gui'>";
+	echo "<a name = 'cancel' id = 'cancel' onclick = 'off(); return false' href = ''>X</a>";
+	echo "<h3 id = 'signup'>Sign Up to College Corner </h3>";
+	echo "<form action='index.php' method='POST' id='popup'>";
+	echo "<a id = 'email'>Email: </a>";
+	echo "<input type='email' id = 'email' name='email' required> <br>";
+	echo "<a id = 'username'>Username: </a>";
+	echo "<input type='text' name='username1' id = 'username' required> <br>";
+	echo "<a id = 'password'>Password: </a>";
+	echo "<input type='text' name='password1' id = 'password' required><br>";
+	echo "<a id = 'gpa'>GPA: </a>";
+	echo "<input type='text' id = 'gpa' name='GPA'><br>";
+	echo "<a id = 'act'>ACT: </a>";
+	echo "<input type='text' id = 'act' name='ACT'><br>";
+	echo "<a id = 'sat'>SAT: </a>";
+	echo "<input type='text' id = 'sat' name='SAT'><br>";
+	echo "<input type='submit' id = 'submit1'>";
+	echo "</form>";
+	echo "</div>";
+	echo "</div>";
 
 }
 
