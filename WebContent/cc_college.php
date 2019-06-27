@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <HTML>
-<HEAD> 
+<HEAD>
 	<TITLE>College Corner</TITLE>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
 </HEAD>
-<BODY>
+<BODY> 
 
 	<?php
 session_start(); // gets global variables
@@ -25,13 +25,11 @@ if ($_SESSION['loggedin'] == 1) {
 	echo "</form>";
 	echo "</div>";
 }
-
 if (isset($_GET['logout'])) {
 	unset($_SESSION['username']);
 	unset($_SESSION['loggedin']);
 	header('Location: index.php');
 }
-
 echo "<br>";
 echo "<br>";
 echo "<br>";
@@ -54,23 +52,19 @@ $password = "Psw6T2l7OL";
 $db = "tLRfZznYPZ";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
-
 $sql = "SELECT * FROM info WHERE name = '$name'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 if ($row == 0) {
 	echo "<script>window.alert('Error.')</script>";
-
 } else {
 	// loops the heading of the table and display the results.
 	foreach ($row as $key => $row) {
 		echo $key . "  ";
 		echo $row;
 		echo "<br>";
-
 	}
 }
-
 // login details
 if (isset($_GET['login'])) {
 	echo "<br><br><br><br>";
@@ -79,7 +73,6 @@ if (isset($_GET['login'])) {
 	echo "<input type='text' name='password' placeholder='Password'><br>";
 	echo "<input type='submit'>";
 	echo "</form>";
-
 }
 if (isset($_GET['register'])) {
 	echo "<br><br><br><br>";
@@ -92,9 +85,7 @@ if (isset($_GET['register'])) {
 	echo "<input type='text' name='SAT' placeholder='SAT'><br>";
 	echo "<input type='submit'>";
 	echo "</form>";
-
 }
-
 if (isset($_POST['email'])) // QUERY INTO THE DATABASE AND REGISTER.
 {
 	// $username2 = "jgeiI6GRFh";
@@ -130,13 +121,11 @@ if (isset($_POST['username'])) {
 				echo $key . "  ";
 				echo $row;
 				echo "<br>";
-
 			}
 			header('Location: index.php');
 		}
 	}
 }
-
 ?>
 
 <script>
@@ -147,7 +136,6 @@ if (isset($_POST['username'])) {
 				shown = true;
 				document.getElementById('dropdown-content').style.display = 'block';
 			}
-
 	}
 	function dropHide() {
 		document.getElementById('dropdown-content').style.display = 'none';
