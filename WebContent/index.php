@@ -11,7 +11,7 @@
 </video>
 	<?php
 session_start(); // gets global variables
-
+$loggedin = 0;
 //  chooses which nvarbar to display if the user is logged in or not.
 if ($_SESSION['loggedin'] == 1) {
 	echo "<div class = 'topnav' id='topnav'>";
@@ -36,9 +36,10 @@ if (isset($_GET['logout'])) {
 
 ?>
 <h1 id="name">College Corner</h1>
-<form action="" method="POST">
+<form action="" method="POST" >
 <input type="text" placeholder="   Start Searching Colleges  " class="search" name="college">
-<img src="https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png" id="search">
+<img src="https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png" id="search"
+	onclick="document.forms('search').submit()"/>
 <input type="submit" value="" name="submit" id="search">
 </form>
 <br>
@@ -68,22 +69,20 @@ $conn = new mysqli($servername, $username, $password, $db);
 
 // for data revolving around the search
 if (isset($_POST['submit'])) {
-	if (isset($_POST['submit'])) {
-		$name = $_POST['college'];
-		$sql = "SELECT * FROM info WHERE name = '$name'";
-		$result = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_assoc($result);
-		if ($row == 0) {
-			echo "<script>window.alert('Try searching a different school.')</script>";
-		} else {
-			$_SESSION['college'] = $name;
-			echo "<script>window.alert('$name')</script>";
-			header("Location: cc_college.php");
+	$name = $_POST['college'];
+	$sql = "SELECT * FROM info WHERE name = '$name'";
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($result);
+	if ($row == 0) {
+		echo "<script>window.alert('Try searching a different school.')</script>";
+	} else {
+		$_SESSION['college'] = $name;
+		echo "<script>window.alert('$name')</script>";
+		header("Location: cc_college.php");
 
-		}
 	}
-
 }
+
 // login details
 if (isset($_GET['login'])) {
 	echo "<br><br><br><br>";

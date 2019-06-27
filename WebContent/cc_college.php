@@ -1,145 +1,159 @@
-/** Imports ** /
+<!DOCTYPE HTML>
+<HTML>
+<HEAD>
+	<TITLE>College Corner</TITLE>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</HEAD>
+<BODY>
 
-
-
-
-/** Default Styles **/
-a {
-	text-decoration: none;
-	color: inherit;
-}
-ul, ol, li {
-	list-style: none;
-}
-
-
-.topnav {
-position:fixed;
-	top:0;
-	left:0;
-	width:100%;
-  text-align:right;
-  font-family: 'Lato', sans-serif;
-  background-color: #292684;
-  color: #e0e0e0;
-  overflow: hidden;
-}
-
-.topnav a {
-  float: right;
-  color: #e0e0e0;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-.topnav a:hover {
-  color: white;
-}
-.dropdown {
-	display: table;
-	width: 90px;
-	background-color: gray;
-	color: white;
-	float: right;
-	box-shadow: 3px 3px 10px black;
-
-}
-#dropdown-content {
-	display: none;
-	padding: 5px;
-	font-size: 1.1em;
-	padding-left: 0px;
-	text-align: center;
-	font-family: 'Lato', sans-serif;
-}
-a#user:hover .dropdown-content {
-	display: block;
-}
-a {
-	    color: #e0e0e0;
-
-}
-a:hover {
-	color: white;
+	<?php
+session_start(); // gets global variables
+$name = $_SESSION["college"];
+//  chooses which nvarbar to display if the user is logged in or not.
+if ($_SESSION['loggedin'] == 1) {
+	echo "<div class = 'topnav' id='topnav'>";
+	echo "<form method='post' action='cc_college.php'>";
+	echo "<a name='log' id='user' href='#' onClick='dropShow()'> Hello,        " . $_SESSION['username'] . "</a>";
+	echo "</form>";
+	echo "</div>";
+} else {
+	echo "<div class = 'topnav' id='topnav'>";
+	echo "<form method='post' action='index.php'>";
+	echo "<a name='log' id='login' href = '?login'>Login</a>";
+	echo "<a name='reg' id = 'register' href = '?register'>Register</a>";
+	echo "</form>";
+	echo "</div>";
 }
 
-body {
-	background-color: #397fef;
-	/*background-image: url(""); */
-	background-repeat: no-repeat;
+if (isset($_GET['logout'])) {
+	unset($_SESSION['username']);
+	unset($_SESSION['loggedin']);
+	header('Location: index.php');
 }
 
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<div class='dropdown'>";
+echo "<div id='dropdown-content'>";
+echo "<a href='#'> Settings </a>";
+echo "<a bref='#''> Colleges </a>";
+echo "<a href='?logout'> Logout </a>";
+echo "	</div> ";
+echo "</div>";
+/**
+$servername = "db4free.net";
+$username = "dahdave";
+$password = "123456789";
+$db = "college_corner";
+ **/
+$servername = "remotemysql.com";
+$username = "tLRfZznYPZ";
+$password = "Psw6T2l7OL";
+$db = "tLRfZznYPZ";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $db);
 
+$sql = "SELECT * FROM info WHERE name = '$name'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+if ($row == 0) {
+	echo "<script>window.alert('Error.')</script>";
 
-/** Body Styles **/
-h1#name {
-	position: fixed;
-	top:10%;
-	left:37%;
-	font-size: 4em;
-	color: #ffffff;
-	font-weight: bold;
-	font-family: 'Lato', sans-serif;
-}
-input.search {
-	position: fixed;
-	top: 45%;
-	left:33%;
-	text-align: left;
-	font-size: 1.5em;
-	width: 23em;
+} else {
+	// loops the heading of the table and display the results.
+	foreach ($row as $key => $row) {
+		echo $key . "  ";
+		echo $row;
+		echo "<br>";
 
-}
-input.search a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-input.search {
-  background-color: #ddd;
-  color: black;
-  z-index: -99;
-}
-input#search {
-	position: fixed;
-	width: 4em;
-	height: 3.27em;
-	top:45%;
-	left: 70%;
-	background-image: url("https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png");
-	z-index: -98;
-}
-img#search {
-	position: fixed;
-	width: 38px;
-	height: 38px;
-	top:45%;
-	left: 70%;
-	background-image: url("https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png");
-}
-video {
-	position: fixed;
-	min-height:100%;
-	min-width:100%;
-	 right: 0;
-  	bottom: 0;
-  	z-index: -100;
+	}
 }
 
-/* OVERLAY! */
+// login details
+if (isset($_GET['login'])) {
+	echo "<br><br><br><br>";
+	echo "<form action='index.php' method='POST' id='popup'>";
+	echo "<input type='text' name='username' placeholder='Username'> <br>";
+	echo "<input type='text' name='password' placeholder='Password'><br>";
+	echo "<input type='submit'>";
+	echo "</form>";
 
+}
+if (isset($_GET['register'])) {
+	echo "<br><br><br><br>";
+	echo "<form action='index.php' method='POST' id='popup'>";
+	echo "<input type='email' name='email' placeholder='Email' required> <br>";
+	echo "<input type='text' name='username1' placeholder='Username' required> <br>";
+	echo "<input type='text' name='password1' placeholder='Password' required><br>";
+	echo "<input type='text' name='GPA' placeholder='GPA'><br>";
+	echo "<input type='text' name='ACT' placeholder='ACT'><br>";
+	echo "<input type='text' name='SAT' placeholder='SAT'><br>";
+	echo "<input type='submit'>";
+	echo "</form>";
 
+}
 
+if (isset($_POST['email'])) // QUERY INTO THE DATABASE AND REGISTER.
+{
+	// $username2 = "jgeiI6GRFh";
+	// $password2 = "htUnrVnZdz";
+	$GPA = $_POST['GPA'];
+	$EMAIL = $_POST['email'];
+	$ACT = $_POST['ACT'];
+	$SAT = $_POST['SAT'];
+	$username = $_POST['username1'];
+	$password = $_POST['password1'];
+	$sql = "INSERT INTO `account` (`Username`, `Password`, `Email`, `GPA`, `SAT`, `ACT`) VALUES ('$username', '$password', '$EMAIL', '$GPA', '$SAT', '$ACT')";
+	$result = mysqli_query($conn, $sql);
+	/* MYSQLI_query is a boolean */
+	/* creates an assos array based on the query */
+	echo "<h1> Success, you can login now. </h1>";
+}
+if (isset($_POST['username'])) {
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	if (empty($username) || empty($password)) {
+		echo "<script> window.alert('Error')</script>";
+	} else {
+		$sql = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		if ($row == 0) {
+			echo "<script>window.alert('Invalid Username/Password')</script>";
+		} else {
+			$_SESSION['loggedin'] = true; // allows for a different navbar for logged in users.
+			$_SESSION['username'] = $username;
+			// loops the heading of the table and display the results.
+			foreach ($row as $key => $row) {
+				echo $key . "  ";
+				echo $row;
+				echo "<br>";
 
-/** Footer Styles **/
+			}
+			header('Location: index.php');
+		}
+	}
+}
 
+?>
 
+<script>
+	var shown = false;
+	function dropShow() {
+		if(shown == true)
+			{ dropHide(); }else{
+				shown = true;
+				document.getElementById('dropdown-content').style.display = 'block';
+			}
 
+	}
+	function dropHide() {
+		document.getElementById('dropdown-content').style.display = 'none';
+		shown = false;
+	}
+	</script>
 
-/** Animations and Keyframes **/ 
+</BODY>
+</HTML>
