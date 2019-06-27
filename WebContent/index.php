@@ -8,12 +8,6 @@
 	<script src="index.js"></script>
 </HEAD>
 <BODY>
-<div class = "topnav" id="topnav">
-	<form method="post" action="index.php">
-	<a name="log" id="login"  onclick = "onLogin();return false;" href="?login" >Login</a>
-	<a name="reg" id = "register" onclick = "onRegister();return false;" href="?register">Register</a>
-</form>
-</div>
 <video autoplay muted loop id="backgroundVideo">
   <source src="school (1).mp4" type="video/mp4">
 </video> 
@@ -30,8 +24,8 @@ if ($_SESSION['loggedin'] == 1) {
 } else {
 	echo "<div class = 'topnav' id='topnav'>";
 	echo "<form method='post' action='index.php'>";
-	echo "<a name='log' id='login' href = '?login'>Login</a>";
-	echo "<a name='reg' id = 'register' href = '?register'>Register</a>";
+	echo "<a name='log' id='login' onclick = 'onLogin();return false;' href = '?login'>Login</a>";
+	echo "<a name='reg' id = 'register' onclick = 'onRegister();return false;' href = '?register'>Register</a>";
 	echo "</form>";
 	echo "</div>";
 }
@@ -41,12 +35,12 @@ if (isset($_GET['logout'])) {
 	header('Location: index.php');
 }
 ?>
-
 <h1 id="name">College Corner</h1>
 <form action="" method="POST">
 <input type="text" placeholder="   Start Searching Colleges  " class="search" name="college">
-<button name="search" id="search"></button>
-<img src="https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png" id="search">
+
+<img src="https://images.vexels.com/media/users/3/143356/isolated/preview/64e14fe0195557e3f18ea3becba3169b-search-magnifying-glass-by-vexels.png" id="search"
+onclick="document.forms('search').submit()"/>
 <input type="submit" value="" name="submit" id="search">
 </form>
 <br>
