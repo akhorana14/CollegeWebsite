@@ -11,9 +11,8 @@
 </video>
 	<?php
 session_start(); // gets global variables
-$loggedin = 0;
 //  chooses which nvarbar to display if the user is logged in or not.
-if ($_SESSION['loggedin'] == 1) {
+if (!empty($_SESSION['loggedin'])) {
 	echo "<div class = 'topnav' id='topnav'>";
 	echo "<form method='post' action='cc_college.php'>";
 	echo "<a name='log' id='user' href='#' onClick='dropShow()'> Hello,        " . $_SESSION['username'] . "</a>";
