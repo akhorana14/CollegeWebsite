@@ -10,10 +10,10 @@
 <BODY>
 <video autoplay muted loop id="backgroundVideo">
   <source src="school (1).mp4" type="video/mp4">
-</video> 
-	
-	
-<?php 
+</video>
+
+
+<?php
 session_start(); // gets global variables
 //  chooses which nvarbar to display if the user is logged in or not.
 if ($_SESSION['loggedin'] == 1) {
@@ -54,10 +54,10 @@ onclick="document.forms('search').submit()"/>
 	<a id = "password">Password: </a>
 	<input type="text" name="password" id = "password"><br>
 	<input type="submit" id = "submit">
-	</form>  
-	</div> 
+	</form>
 	</div>
-	
+	</div>
+
 	<div class = "overlay" id="overlay2">
 	<div class = "gui" id = "gui">
 	<a name = "cancel" id = "cancel" onclick = "off(); return false" href = "">X</a>
@@ -80,7 +80,7 @@ onclick="document.forms('search').submit()"/>
 	</div>
 	</div>
 <br>
-<br>   
+<br>
 <div class="dropdown">
 	<div id="dropdown-content">
 		<a href="#"> Settings </a>
@@ -105,15 +105,16 @@ $conn = new mysqli($servername, $username, $password, $db);
 // for data revolving around the search
 if (isset($_POST['submit'])) {
 	$name = $_POST['college'];
+
 	$sql = "SELECT Name from info WHERE name = '$name' or aliases = '$name'";
-		$result = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_assoc($result);
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($result);
 	if ($row == 0) {
 		echo "<script>window.alert('Try searching a different school.')</script>";
 	} else {
 		$_SESSION['college'] = $name;
-			echo "<script>window.alert('$name')</script>";
-			header("Location: cc_college.php");
+		echo "<script>window.alert('$name')</script>";
+		header("Location: cc_college.php");
 	}
 
 }
@@ -132,7 +133,7 @@ if (isset($_POST['email'])) // QUERY INTO THE DATABASE AND REGISTER.
 	$result = mysqli_query($conn, $sql);
 	/* MYSQLI_query is a boolean */
 	/* creates an assos array based on the query */
-	echo "<h1> Success, you can login now. </h1>";
+	echo "<script>window.alert('Success, you can login now.')</script>";
 }
 
 if (isset($_POST['username'])) {
@@ -157,9 +158,9 @@ if (isset($_POST['username'])) {
 			}
 			header('Location: index.php');
 
-			}
 		}
 	}
+}
 ?>
 <script>
 	var shown = false;
