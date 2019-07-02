@@ -105,7 +105,7 @@ $conn = new mysqli($servername, $username, $password, $db);
 // for data revolving around the search
 if (isset($_POST['submit'])) {
 	$name = $_POST['college'];
-	$sql = "SELECT * FROM info WHERE name = '$name'";
+	$sql = "SELECT Name from info WHERE name = '$name' or aliases = '$name'";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
 	if ($row == 0) {
