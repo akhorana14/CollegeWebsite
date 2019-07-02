@@ -55,20 +55,40 @@ $db = "tLRfZznYPZ";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
 
-$sql = "SELECT * FROM info WHERE name = '$name'";
+$sql = "SELECT Tuition, GPA, SAT, ACT, Writing, Acceptance FROM info WHERE name = '$name'";
+$sql1 = "SELECT Name FROM info WHERE name = '$name'";
+$sql2 = "SELECT Location FROM info WHERE name = '$name'";
+$sql3 = "SELECT Picture1 FROM info WHERE name = '$name'";
+$sql4 = "SELECT Picture2 FROM info WHERE name = '$name'";
 $result = mysqli_query($conn, $sql);
+$result1 = mysqli_query($conn, $sql1);
+$result2 = mysqli_query($conn, $sql2);
+$result3 = mysqli_query($conn, $sql3);
+$result4 = mysqli_query($conn, $sql4);
 $row = mysqli_fetch_assoc($result);
+$nam = mysqli_fetch_assoc($result1);
+$loc = mysqli_fetch_assoc($result2);
+$pic1 = mysqli_fetch_assoc($result3);
+$pic2 = mysqli_fetch_assoc($result4);
+$nam = $nam['Name'];
+$loc = $loc['Location'];
+$pic1 = $pic1['Picture1'];
+$pic2 = $pic2['Picture2'];
 if ($row == 0) {
 echo "<script>window.alert('Error.')</script>";
 
 } else {
 // loops the heading of the table and display the results.
-foreach ($row as $key => $row) {
-echo $key . "  ";
-echo $row;
-echo "<br>";
+echo "<img src='$pic1' width='450' height='350' align='left'>";
+echo "<img src='$pic2' width='450' height='350' align='right'>";
+echo "<CENTER><H1>$nam</H1></CENTER><BR>";
+echo "<CENTER><H2>$loc</H2></CENTER><BR><BR><BR><BR><BR>";
 
+echo "<CENTER><Table border='5' cellpadding='15'></CENTER>";
+foreach ($row as $key => $row) {
+	echo "<TD><CENTER><B>$key : <BR><BR> $row <BR><BR></B></CENTER></TD>";
 }
+echo "</TABLE>";
 }
 
 // login details
