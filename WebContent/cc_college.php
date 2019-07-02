@@ -54,7 +54,11 @@ $password = "Psw6T2l7OL";
 $db = "tLRfZznYPZ";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
-
+$sqlx = "SELECT Name from info WHERE name = '$name' or aliases = '$name'";
+$resultx = mysqli_query($conn, $sqlx);
+$name = mysqli_fetch_assoc($resultx);
+$name = $name['Name'];
+	
 $sql = "SELECT Tuition, GPA, SAT, ACT, Writing, Acceptance FROM info WHERE name = '$name'";
 $sql1 = "SELECT Name FROM info WHERE name = '$name'";
 $sql2 = "SELECT Location FROM info WHERE name = '$name'";
