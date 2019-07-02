@@ -10,7 +10,7 @@
 	<div class = "gui" id = "gui">
 	<a name = "cancel" id = "cancel" onclick = "off(); return false" href = "">X</a>
 	<h2 id = "login">Log In to College Corner </h2>
-	<form action="index.php" method="POST" id="popup">
+	<form action="cc_college.php" method="POST" id="popup">
 	<a id = "username1">Username: </a>
 	<input type="text" name="username" id = "username1"> <br>
 	<a id = "password">Password: </a>
@@ -18,15 +18,15 @@
 	<input type="submit" id = "submit">
 	</form>
 	</div>
-	</form>  
-	</div> 
+	</form>
 	</div>
-	
+	</div>
+
 	<div class = "overlay" id="overlay2">
 	<div class = "gui" id = "gui">
 	<a name = "cancel" id = "cancel" onclick = "off(); return false" href = "">X</a>
 	<h3 id = "signup">Sign Up to College Corner </h3>
-	<form action="index.php" method="POST" id="popup">
+	<form action="cc_college.php" method="POST" id="popup">
 	<a id = "email">Email: </a>
 	<input type="email" id = "email" name="email" required> <br>
 	<a id = "username">Username: </a>
@@ -48,23 +48,23 @@ session_start(); // gets global variables
 $name = $_SESSION["college"];
 //  chooses which nvarbar to display if the user is logged in or not.
 if ($_SESSION['loggedin'] == 1) {
-echo "<div class = 'topnav' id='topnav'>";
-echo "<form method='post' action='cc_college.php'>";
-echo "<a name='log' id='user' href='#' onClick='dropShow()'> Hello,        " . $_SESSION['username'] . "</a>";
-echo "</form>";
-echo "</div>";
+	echo "<div class = 'topnav' id='topnav'>";
+	echo "<form method='post' action='cc_college.php'>";
+	echo "<a name='log' id='user' href='#' onClick='dropShow()'> Hello,        " . $_SESSION['username'] . "</a>";
+	echo "</form>";
+	echo "</div>";
 } else {
-echo "<div class = 'topnav' id='topnav'>";
-echo "<form method='post' action='index.php'>";
-echo "<a name='log' id='login' href = '?login' onClick = 'onLogin(); return false;' >Login</a>";
+	echo "<div class = 'topnav' id='topnav'>";
+	echo "<form method='post' action='cc_college.php'>";
+	echo "<a name='log' id='login' href = '?login' onClick = 'onLogin(); return false;' >Login</a>";
 	echo "<a name='reg' id = 'register' href = '?register' onClick = 'onRegister(); return false;'>Register</a>";
-echo "</form>";
-echo "</div>";
+	echo "</form>";
+	echo "</div>";
 }
 if (isset($_GET['logout'])) {
-unset($_SESSION['username']);
-unset($_SESSION['loggedin']);
-header('Location: index.php');
+	unset($_SESSION['username']);
+	unset($_SESSION['loggedin']);
+	header('Location: cc_college.php');
 }
 echo "<br>";
 echo "<br>";
@@ -88,6 +88,11 @@ $password = "Psw6T2l7OL";
 $db = "tLRfZznYPZ";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
+$sqlx = "SELECT Name from info WHERE name = '$name' or aliases = '$name'";
+$resultx = mysqli_query($conn, $sqlx);
+$name = mysqli_fetch_assoc($resultx);
+$name = $name['Name'];
+
 $sql = "SELECT Tuition, GPA, SAT, ACT, Writing, Acceptance FROM info WHERE name = '$name'";
 $sql1 = "SELECT Name FROM info WHERE name = '$name'";
 $sql2 = "SELECT Location FROM info WHERE name = '$name'";
@@ -108,59 +113,59 @@ $loc = $loc['Location'];
 $pic1 = $pic1['Picture1'];
 $pic2 = $pic2['Picture2'];
 if ($row == 0) {
-echo "<script>window.alert('Error.')</script>";
+	echo "<script>window.alert('Error.')</script>";
 } else {
 // loops the heading of the table and display the results.
-echo "<img src='$pic1' width='450' height='350' align='left'>";
-echo "<img src='$pic2' width='450' height='350' align='right'>";
-echo "<CENTER><H1>$nam</H1></CENTER><BR>";
-echo "<CENTER><H2>$loc</H2></CENTER><BR><BR><BR><BR><BR>";
-echo "<CENTER><Table border='5' cellpadding='15'></CENTER>";
-foreach ($row as $key => $row) {
-	echo "<TD><CENTER><B>$key : <BR><BR> $row <BR><BR></B></CENTER></TD>";
-}
-echo "</TABLE>";
+	echo "<img src='$pic1' width='450' height='350' align='left'>";
+	echo "<img src='$pic2' width='450' height='350' align='right'>";
+	echo "<CENTER><H1>$nam</H1></CENTER><BR>";
+	echo "<CENTER><H2>$loc</H2></CENTER><BR><BR><BR><BR><BR>";
+	echo "<CENTER><Table border='5' cellpadding='15'></CENTER>";
+	foreach ($row as $key => $row) {
+		echo "<TD><CENTER><B>$key : <BR><BR> $row <BR><BR></B></CENTER></TD>";
+	}
+	echo "</TABLE>";
 }
 // login details
 if (isset($_POST['email'])) // QUERY INTO THE DATABASE AND REGISTER.
 {
 // $username2 = "jgeiI6GRFh";
-// $password2 = "htUnrVnZdz";
-$GPA = $_POST['GPA'];
-$EMAIL = $_POST['email'];
-$ACT = $_POST['ACT'];
-$SAT = $_POST['SAT'];
-$username = $_POST['username1'];
-$password = $_POST['password1'];
-$sql = "INSERT INTO `account` (`Username`, `Password`, `Email`, `GPA`, `SAT`, `ACT`) VALUES ('$username', '$password', '$EMAIL', '$GPA', '$SAT', '$ACT')";
-$result = mysqli_query($conn, $sql);
+	// $password2 = "htUnrVnZdz";
+	$GPA = $_POST['GPA'];
+	$EMAIL = $_POST['email'];
+	$ACT = $_POST['ACT'];
+	$SAT = $_POST['SAT'];
+	$username = $_POST['username1'];
+	$password = $_POST['password1'];
+	$sql = "INSERT INTO `account` (`Username`, `Password`, `Email`, `GPA`, `SAT`, `ACT`) VALUES ('$username', '$password', '$EMAIL', '$GPA', '$SAT', '$ACT')";
+	$result = mysqli_query($conn, $sql);
 /* MYSQLI_query is a boolean */
 /* creates an assos array based on the query */
-echo "<h1> Success, you can login now. </h1>";
+	echo "<script>window.alert('Success, you can login now.')</script>";
 }
 if (isset($_POST['username'])) {
-$username = $_POST['username'];
-$password = $_POST['password'];
-if (empty($username) || empty($password)) {
-echo "<script> window.alert('Error')</script>";
-} else {
-$sql = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-if ($row == 0) {
-echo "<script>window.alert('Invalid Username/Password')</script>";
-} else {
-$_SESSION['loggedin'] = true; // allows for a different navbar for logged in users.
-$_SESSION['username'] = $username;
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	if (empty($username) || empty($password)) {
+		echo "<script> window.alert('Error')</script>";
+	} else {
+		$sql = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		if ($row == 0) {
+			echo "<script>window.alert('Invalid Username/Password')</script>";
+		} else {
+			$_SESSION['loggedin'] = true; // allows for a different navbar for logged in users.
+			$_SESSION['username'] = $username;
 // loops the heading of the table and display the results.
-foreach ($row as $key => $row) {
-echo $key . "  ";
-echo $row;
-echo "<br>";
-}
-header('Location: index.php');
-}
-}
+			foreach ($row as $key => $row) {
+				echo $key . "  ";
+				echo $row;
+				echo "<br>";
+			}
+			header('Location: cc_college.php');
+		}
+	}
 }
 ?>
 
