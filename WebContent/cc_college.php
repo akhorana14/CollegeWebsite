@@ -6,7 +6,43 @@
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </HEAD>
 <BODY>
-
+<div class = "overlay" id="overlay1">
+	<div class = "gui" id = "gui">
+	<a name = "cancel" id = "cancel" onclick = "off(); return false" href = "">X</a>
+	<h2 id = "login">Log In to College Corner </h2>
+	<form action="index.php" method="POST" id="popup">
+	<a id = "username1">Username: </a>
+	<input type="text" name="username" id = "username1"> <br>
+	<a id = "password">Password: </a>
+	<input type="text" name="password" id = "password"><br>
+	<input type="submit" id = "submit">
+	</form>
+	</div>
+	</form>  
+	</div> 
+	</div>
+	
+	<div class = "overlay" id="overlay2">
+	<div class = "gui" id = "gui">
+	<a name = "cancel" id = "cancel" onclick = "off(); return false" href = "">X</a>
+	<h3 id = "signup">Sign Up to College Corner </h3>
+	<form action="index.php" method="POST" id="popup">
+	<a id = "email">Email: </a>
+	<input type="email" id = "email" name="email" required> <br>
+	<a id = "username">Username: </a>
+	<input type="text" name="username1" id = "username" required> <br>
+	<a id = "password">Password: </a>
+	<input type="text" name="password1" id = "password" required><br>
+	<a id = "gpa">GPA: </a>
+	<input type="text" id = "gpa" name="GPA"><br>
+	<a id = "act">ACT: </a>
+	<input type="text" id = "act" name="ACT"><br>
+	<a id = "sat">SAT: </a>
+	<input type="text" id = "sat" name="SAT"><br>
+	<input type="submit" id = "submit1">
+	</form>
+	</div>
+	</div>
 <?php
 session_start(); // gets global variables
 $name = $_SESSION["college"];
@@ -20,18 +56,16 @@ echo "</div>";
 } else {
 echo "<div class = 'topnav' id='topnav'>";
 echo "<form method='post' action='index.php'>";
-echo "<a name='log' id='login' href = '?login'>Login</a>";
-echo "<a name='reg' id = 'register' href = '?register'>Register</a>";
+echo "<a name='log' id='login' href = '?login' onClick = 'onLogin(); return false;' >Login</a>";
+	echo "<a name='reg' id = 'register' href = '?register' onClick = 'onRegister(); return false;'>Register</a>";
 echo "</form>";
 echo "</div>";
 }
-
 if (isset($_GET['logout'])) {
 unset($_SESSION['username']);
 unset($_SESSION['loggedin']);
 header('Location: index.php');
 }
-
 echo "<br>";
 echo "<br>";
 echo "<br>";
@@ -54,11 +88,6 @@ $password = "Psw6T2l7OL";
 $db = "tLRfZznYPZ";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
-$sqlx = "SELECT Name from info WHERE name = '$name' or aliases = '$name'";
-$resultx = mysqli_query($conn, $sqlx);
-$name = mysqli_fetch_assoc($resultx);
-$name = $name['Name'];
-	
 $sql = "SELECT Tuition, GPA, SAT, ACT, Writing, Acceptance FROM info WHERE name = '$name'";
 $sql1 = "SELECT Name FROM info WHERE name = '$name'";
 $sql2 = "SELECT Location FROM info WHERE name = '$name'";
@@ -80,65 +109,19 @@ $pic1 = $pic1['Picture1'];
 $pic2 = $pic2['Picture2'];
 if ($row == 0) {
 echo "<script>window.alert('Error.')</script>";
-
 } else {
 // loops the heading of the table and display the results.
 echo "<img src='$pic1' width='450' height='350' align='left'>";
 echo "<img src='$pic2' width='450' height='350' align='right'>";
 echo "<CENTER><H1>$nam</H1></CENTER><BR>";
 echo "<CENTER><H2>$loc</H2></CENTER><BR><BR><BR><BR><BR>";
-
 echo "<CENTER><Table border='5' cellpadding='15'></CENTER>";
 foreach ($row as $key => $row) {
 	echo "<TD><CENTER><B>$key : <BR><BR> $row <BR><BR></B></CENTER></TD>";
 }
 echo "</TABLE>";
 }
-
 // login details
-if (isset($_GET['login'])) {
-	echo "<br><br><br><br>";
-	echo "<div class = 'overlay' id='overlay'>";
-	echo "<div class = 'gui' id = 'gui'>";
-	echo "<a name = 'cancel' id = 'cancel' onclick = 'off(); return false' href = ''>X</a>";
-	echo "<h2 id = 'login'>Log In to College Corner </h2>";
-	echo "<form action='index.php' method='POST' id='popup'>";
-	echo "<a id = 'username1'>Username: </a>";
-	echo "<input type='text' name='username' id = 'username1'> <br>";
-	echo "<a id = 'password'>Password: </a>";
-	echo "<input type='text' name='password' id = 'password'><br>";
-	echo "<input type='submit' id = 'submit'>";
-	echo "</form>";
-	echo "</div>";
-	echo "</div>";
-
-}
-if (isset($_GET['register'])) {
-	echo "<br><br><br><br>";
-	echo "<div class = 'overlay' id='overlay'>";
-	echo "<div class = 'gui' id = 'gui'>";
-	echo "<a name = 'cancel' id = 'cancel' onclick = 'off(); return false' href = ''>X</a>";
-	echo "<h3 id = 'signup'>Sign Up to College Corner </h3>";
-	echo "<form action='index.php' method='POST' id='popup'>";
-	echo "<a id = 'email'>Email: </a>";
-	echo "<input type='email' id = 'email' name='email' required> <br>";
-	echo "<a id = 'username'>Username: </a>";
-	echo "<input type='text' name='username1' id = 'username' required> <br>";
-	echo "<a id = 'password'>Password: </a>";
-	echo "<input type='text' name='password1' id = 'password' required><br>";
-	echo "<a id = 'gpa'>GPA: </a>";
-	echo "<input type='text' id = 'gpa' name='GPA'><br>";
-	echo "<a id = 'act'>ACT: </a>";
-	echo "<input type='text' id = 'act' name='ACT'><br>";
-	echo "<a id = 'sat'>SAT: </a>";
-	echo "<input type='text' id = 'sat' name='SAT'><br>";
-	echo "<input type='submit' id = 'submit1'>";
-	echo "</form>";
-	echo "</div>";
-	echo "</div>";
-
-}
-
 if (isset($_POST['email'])) // QUERY INTO THE DATABASE AND REGISTER.
 {
 // $username2 = "jgeiI6GRFh";
@@ -174,13 +157,11 @@ foreach ($row as $key => $row) {
 echo $key . "  ";
 echo $row;
 echo "<br>";
-
 }
 header('Location: index.php');
 }
 }
 }
-
 ?>
 
 <script>
@@ -191,11 +172,20 @@ if(shown == true)
 shown = true;
 document.getElementById('dropdown-content').style.display = 'block';
 }
-
 }
 function dropHide() {
 document.getElementById('dropdown-content').style.display = 'none';
 shown = false;
+}
+	function onLogin() {
+	document.getElementById("overlay1").style.display = "block";
+}
+function onRegister() {
+	document.getElementById("overlay2").style.display = "block";
+}
+function off() {
+  document.getElementById("overlay1").style.display = "none";
+	document.getElementById("overlay2").style.display = "none";
 }
 </script>
 
